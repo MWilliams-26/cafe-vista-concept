@@ -110,7 +110,7 @@ figure { margin: 0; }
 }
 .wordmark { display: inline-flex; align-items: baseline; gap: 0.45rem; text-decoration: none; color: var(--china-deep); margin-right: auto; }
 .wordmark__sprig { width: 1.6rem; height: 1.6rem; align-self: center; color: var(--china); }
-.wordmark__name { font: 700 1.65rem/1 var(--serif); letter-spacing: 0.01em; }
+.wordmark__name { font: 700 1.65rem/1 var(--serif); letter-spacing: 0.01em; white-space: nowrap; }
 .wordmark__place { font: 500 0.7rem/1 var(--sans); letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-soft); }
 .nav { display: flex; gap: 1.8rem; }
 .nav a { font-size: 0.94rem; text-decoration: none; color: var(--ink-soft); padding: 0.3rem 0; background: linear-gradient(var(--rose-deep), var(--rose-deep)) no-repeat 0 100% / 0 1.5px; transition: background-size 0.25s, color 0.2s; }
@@ -367,7 +367,10 @@ figure { margin: 0; }
 	padding: 0.7rem 0.85rem;
 	min-height: 2.9rem;
 	width: 100%;
+	min-width: 0;
 }
+.inquiry input[type="date"] { -webkit-appearance: none; appearance: none; }
+.inquiry input::-webkit-date-and-time-value { text-align: left; }
 .inquiry input:focus,
 .inquiry select:focus,
 .inquiry textarea:focus { outline: 2px solid var(--rose); outline-offset: 1px; }
@@ -472,7 +475,6 @@ figure { margin: 0; }
 .footer a { color: var(--paper); }
 .footer__credit { margin-top: 2rem; font-size: 0.8rem; opacity: 0.7; }
 
-.dock { display: none; }
 
 /* Tablet */
 @media (max-width: 1020px) {
@@ -490,8 +492,6 @@ figure { margin: 0; }
 
 /* Phone */
 @media (max-width: 760px) {
-	.footer { padding-bottom: calc(6.5rem + env(safe-area-inset-bottom)); }
-	.masthead .btn { display: none; }
 	.masthead__inner { min-height: 3.8rem; }
 	.hero { grid-template-columns: 1fr; padding-top: 1.8rem; gap: 2.5rem; }
 	.hero__art { order: -1; width: min(100%, 360px); padding: 0 0 2rem 2rem; }
@@ -511,35 +511,36 @@ figure { margin: 0; }
 	.events__photo { display: none; }
 	.card { grid-template-columns: 1fr; grid-template-areas: "kicker" "title" "price" "list" "btn"; grid-template-rows: none; }
 	.card ul { margin-bottom: 1.4rem; }
-	.inquiry__grid { grid-template-columns: 1fr 1fr; }
+	.inquiry { padding: 1.5rem 1.1rem 1.2rem; }
+	.inquiry h3 { font-size: 1.7rem; }
+	.inquiry__grid { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 1rem 0.8rem; }
 	.inquiry__grid label:first-child,
 	.inquiry__grid label:nth-child(4),
 	.inquiry__two,
 	.inquiry__wide { grid-column: span 2; }
+	.inquiry input, .inquiry select, .inquiry textarea { min-height: 3.1rem; }
+	.inquiry textarea { min-height: 6.5rem; }
+	.inquiry .btn { width: 100%; min-height: 3.25rem; }
+	.inquiry__msg { margin-top: 0.8rem; }
 	.story { grid-template-columns: 1fr; }
 	.story__frame::before { inset: 0.9rem -0.6rem -0.9rem 0.9rem; }
 	.voices { grid-template-columns: 1fr; }
 	.voice + .voice { border-left: 0; border-top: 1px solid var(--line); }
 	.know__list { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
 	.visit { grid-template-columns: 1fr; }
+}
 
-	.dock {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1.3fr;
-		gap: 0.5rem;
-		position: fixed;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 30;
-		padding: 0.6rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom));
-		background: color-mix(in srgb, var(--paper) 92%, transparent);
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px);
-		border-top: 1px solid var(--line);
-	}
-	.dock a { display: grid; place-items: center; min-height: 2.9rem; border-radius: 999px; border: 1.5px solid var(--china); color: var(--china); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
-	.dock .dock__primary { background: var(--china); color: var(--paper); }
+/* Narrow phones: drop the place name so the Order button fits beside the wordmark */
+@media (max-width: 420px) {
+	.masthead__inner { gap: 0.75rem; }
+	[data-masthead] .wordmark__place { display: none; }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+	.masthead .btn { padding-inline: 0.95rem; }
+	.inquiry__grid { grid-template-columns: 1fr; }
+	.inquiry__grid > label:nth-child(n) { grid-column: 1 / -1; }
 }
 
 /* Refresh brief (/notes) */
