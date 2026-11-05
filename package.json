@@ -1,0 +1,13 @@
+{
+	"name": "cafe-vista-concept",
+	"private": true,
+	"description": "Website refresh concept for Café Vista, 527 Monroe St, Hoboken NJ",
+	"scripts": {
+		"dev": "wrangler dev",
+		"images": "./scripts/images.sh",
+		"deploy": "wrangler deploy"
+	},
+	"devDependencies": {
+		"wrangler": "^4.158.0"
+	}
+}
