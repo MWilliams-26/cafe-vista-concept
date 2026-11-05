@@ -494,7 +494,7 @@ figure { margin: 0; }
 	.masthead .btn { display: none; }
 	.masthead__inner { min-height: 3.8rem; }
 	.hero { grid-template-columns: 1fr; padding-top: 1.8rem; gap: 2.5rem; }
-	.hero__art { width: min(100%, 360px); padding: 0 0 2rem 2rem; }
+	.hero__art { order: -1; width: min(100%, 360px); padding: 0 0 2rem 2rem; }
 	.seal { width: 6.5rem; right: -0.6rem; top: -0.8rem; }
 	.hero__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
 	.hero__actions .btn { padding-inline: 0.8rem; }
